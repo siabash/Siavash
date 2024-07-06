@@ -1,0 +1,1 @@
+vless://5ea26d46-f123-484b-a1b7-b220d48ab52d@193.151.151.112:2053?type=tcp&path=%2F&host=www.naabmovies.ir&headerType=http&security=none#Jadiid-XIGMA.Ind.Group.R

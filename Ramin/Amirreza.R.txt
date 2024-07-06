@@ -1,0 +1,1 @@
+vless://0b11bb3b-936b-47ba-a8d9-0130d47fd1c0@193.151.151.112:2053?type=tcp&path=%2F&host=www.naabmovies.ir&headerType=http&security=none#Jadiid-Amirreza.R

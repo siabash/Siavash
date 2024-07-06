@@ -1,0 +1,1 @@
+vless://08990c37-1c22-4df9-b88b-333c33306e73@193.151.151.112:443?type=tcp&path=%2F&host=www.uptvs.com&headerType=http&security=none#Jadid-Yasin.R
