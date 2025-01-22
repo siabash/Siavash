@@ -1,1 +1,826 @@
-https://villa.mrestate.site/GjY0AgfKLPd7fZeXAdcfzMHsm0rRoX/2dba327f-dfa3-4296-b0fc-cfc3bc59c612/#Sub%20Android%20default%20MCI
+{
+  "log": {
+    "level": "warn",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "udp://1.1.1.1",
+        "address_resolver": "dns-direct"
+      },
+      {
+        "tag": "dns-trick-direct",
+        "address": "https://sky.rethinkdns.com/",
+        "detour": "direct-fragment"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "1.1.1.1",
+        "address_resolver": "dns-local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain": "cp.cloudflare.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
+      },
+      {
+        "domain_suffix": ".ir",
+        "server": "dns-direct"
+      },
+      {
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
+        "server": "dns-direct"
+      }
+    ],
+    "final": "dns-remote",
+    "static_ips": {
+      "sky.rethinkdns.com": [
+        "104.17.147.22",
+        "104.17.148.22",
+        "188.114.96.2",
+        "188.114.97.2"
+      ]
+    },
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/28",
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "stack": "gvisor",
+      "sniff": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 12334,
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 16450
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "CloudFlare Server1 § 443 4",
+        "CloudFlare Server2 § 443 4",
+        "CloudFlare Server4 § 443 4",
+        "CloudFlare Server5 § 443 4",
+        "CloudFlare Server6 § 443 4",
+        "CloudFlare Server8 § 443 4",
+        "کلودفلر  Server1 § 443 12",
+        "کلودفلر  Server2 § 443 12",
+        "کلودفلر  Server4 § 443 12",
+        "کلودفلر  Server5 § 443 12",
+        "کلودفلر  Server6 § 443 12",
+        "کلودفلر  Server8 § 443 12",
+        "Iphone Server1 § 443 13",
+        "Iphone Server2 § 443 13",
+        "Iphone Server4 § 443 13",
+        "Iphone Server5 § 443 13",
+        "Iphone Server6 § 443 13",
+        "Iphone Server8 § 443 13"
+      ],
+      "default": "auto",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "CloudFlare Server1 § 443 4",
+        "CloudFlare Server2 § 443 4",
+        "CloudFlare Server4 § 443 4",
+        "CloudFlare Server5 § 443 4",
+        "CloudFlare Server6 § 443 4",
+        "CloudFlare Server8 § 443 4",
+        "کلودفلر  Server1 § 443 12",
+        "کلودفلر  Server2 § 443 12",
+        "کلودفلر  Server4 § 443 12",
+        "کلودفلر  Server5 § 443 12",
+        "کلودفلر  Server6 § 443 12",
+        "کلودفلر  Server8 § 443 12",
+        "Iphone Server1 § 443 13",
+        "Iphone Server2 § 443 13",
+        "Iphone Server4 § 443 13",
+        "Iphone Server5 § 443 13",
+        "Iphone Server6 § 443 13",
+        "Iphone Server8 § 443 13"
+      ],
+      "url": "http://cp.cloudflare.com",
+      "interval": "10m0s",
+      "tolerance": 1,
+      "idle_timeout": "30m0s",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "vless",
+      "tag": "CloudFlare Server1 § 443 4",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.67.188.203",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "cDnaPP.BAZaRSIa.sPACe",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/a1E12w2iVi3bHbNLD",
+        "headers": {
+          "Host": "cdnapp.bazarsia.space"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CloudFlare Server2 § 443 4",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.67.188.203",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "cdNaPP.BAZArsIa.spaCE",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/a1E12w2iVisZ0xq9SLBfKDX",
+        "headers": {
+          "Host": "cdnapp.bazarsia.space"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CloudFlare Server4 § 443 4",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.67.188.203",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "cDnaPp.BaZArsia.SPaCE",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "a1E12w2iViy5122I7hK3UccLP",
+        "idle_timeout": "1m55s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CloudFlare Server5 § 443 4",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.67.188.203",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "cdNaPp.BAZaRsIA.space",
+        "alpn": "http/1.1",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/a1E12w2iVi3bHbNLD",
+        "headers": {
+          "Host": "cdnapp.bazarsia.space"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CloudFlare Server6 § 443 4",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.67.188.203",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "cdnaPp.bAzaRsiA.SPaCe",
+        "alpn": "http/1.1",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/a1E12w2iVisZ0xq9SLBfKDX",
+        "headers": {
+          "Host": "cdnapp.bazarsia.space"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CloudFlare Server8 § 443 4",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.67.188.203",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "CdnApP.bAZaRSIa.SPACe",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "a1E12w2iViy5122I7hK3UccLP",
+        "idle_timeout": "1m55s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "کلودفلر  Server1 § 443 12",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.66.213.38",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "Panel.AmlakSaadat.FILEgeAr-sg.mE",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/a1E12w2iVi3bHbNLD",
+        "headers": {
+          "Host": "panel.amlaksaadat.filegear-sg.me"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "کلودفلر  Server2 § 443 12",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.66.213.38",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "paNel.amlAKsAaDaT.FIleGEar-SG.ME",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/a1E12w2iVisZ0xq9SLBfKDX",
+        "headers": {
+          "Host": "panel.amlaksaadat.filegear-sg.me"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "کلودفلر  Server4 § 443 12",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.66.213.38",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "PANel.amlaKSaADAT.FilEGear-sg.mE",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "a1E12w2iViy5122I7hK3UccLP",
+        "idle_timeout": "1m55s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "کلودفلر  Server5 § 443 12",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.66.213.38",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "paNel.AmLakSAadAt.fiLEGeAr-sg.ME",
+        "alpn": "http/1.1",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/a1E12w2iVi3bHbNLD",
+        "headers": {
+          "Host": "panel.amlaksaadat.filegear-sg.me"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "کلودفلر  Server6 § 443 12",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.66.213.38",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "pAnEL.amlakSaaDAT.fiLeGEaR-SG.ME",
+        "alpn": "http/1.1",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/a1E12w2iVisZ0xq9SLBfKDX",
+        "headers": {
+          "Host": "panel.amlaksaadat.filegear-sg.me"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "کلودفلر  Server8 § 443 12",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.66.213.38",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "paNel.AmLAKsAaDat.FILEGEaR-Sg.Me",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "a1E12w2iViy5122I7hK3UccLP",
+        "idle_timeout": "1m55s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "Iphone Server1 § 443 13",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.64.82.215",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "sHoE.tAgmOND.sIte",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/a1E12w2iVi3bHbNLD",
+        "headers": {
+          "Host": "shoe.tagmond.site"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "Iphone Server2 § 443 13",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.64.82.215",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "ShoE.tAgmoND.siTE",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/a1E12w2iVisZ0xq9SLBfKDX",
+        "headers": {
+          "Host": "shoe.tagmond.site"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "Iphone Server4 § 443 13",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.64.82.215",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "shoe.TagMoND.siTe",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "a1E12w2iViy5122I7hK3UccLP",
+        "idle_timeout": "1m55s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "Iphone Server5 § 443 13",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.64.82.215",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "shOE.tAGmOnD.sIte",
+        "alpn": "http/1.1",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/a1E12w2iVi3bHbNLD",
+        "headers": {
+          "Host": "shoe.tagmond.site"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "Iphone Server6 § 443 13",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.64.82.215",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "shOe.TagMoNd.SITe",
+        "alpn": "http/1.1",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/a1E12w2iVisZ0xq9SLBfKDX",
+        "headers": {
+          "Host": "shoe.tagmond.site"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "Iphone Server8 § 443 13",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      },
+      "server": "172.64.82.215",
+      "server_port": 443,
+      "uuid": "2dba327f-dfa3-4296-b0fc-cfc3bc59c612",
+      "tls": {
+        "enabled": true,
+        "server_name": "sHoE.taGmond.sITe",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "tls_tricks": {
+          "mixedcase_sni": true,
+          "padding_size": "50-200"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "a1E12w2iViy5122I7hK3UccLP",
+        "idle_timeout": "1m55s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "direct",
+      "tag": "direct-fragment",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "3-5"
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "bypass"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": "tun-in",
+        "package_name": "app.hiddify.com",
+        "outbound": "bypass"
+      },
+      {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "domain_suffix": ".ir",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geoip-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geoip-ir.srs",
+        "update_interval": "120h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geosite-ir.srs",
+        "update_interval": "120h0m0s"
+      }
+    ],
+    "final": "select",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "clash.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:16756",
+      "secret": "FBV0DfThwAx_URaj"
+    }
+  }
+}
+I
