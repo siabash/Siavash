@@ -1,1 +1,1 @@
-vless://196d38f2-e370-47ac-88e7-1b3b21492a06@193.151.151.112:2053?type=tcp&path=%2F&host=www.naabmovies.ir&headerType=http&security=none#Jadiid-Ahmadi.R
+vless://86c50e3a-5b87-49dd-bd20-03c7f2735e40@soft98.ir.wwm.p31download.com:8080?encryption=none&security=none&sni=ed7150d7-7c3e-4cdd-adca-f6c14235393d.pooyakarsaz.ir&alpn=h3%2Ch2&fp=chrome&type=ws&host=1123456789.nv2ron.ir&path=%2FeyJleHAiOjE3NTE5ODU0NjExNzh9%3Fed%3D2560#%40.
